@@ -1,7 +1,7 @@
 <template>
 	<button
 		class="btn"
-		v-bind:style="{
+		:style="{
 			backgroundColor: color,
 		}"
 	>
