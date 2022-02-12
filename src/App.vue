@@ -1,13 +1,19 @@
 <template>
 	<div class="container">
 		<Header title="Task List" />
-		<Tasks :tasks="tasks" />
+		<AddTask @add-task="addTask" />
+		<Tasks
+			@delete-task="deleteTask"
+			@toggle-reminder="toggleReminder"
+			:tasks="tasks"
+		/>
 	</div>
 </template>
 
 <script>
 import Header from './components/Header.vue'
 import Button from './components/Button.vue'
+import AddTask from './components/AddTask.vue'
 import Tasks from './components/Tasks.vue'
 
 export default {
@@ -15,12 +21,31 @@ export default {
 	components: {
 		Header,
 		Button,
+		AddTask,
 		Tasks,
 	},
 	data() {
 		return {
 			tasks: [],
 		}
+	},
+	methods: {
+		// add a new task
+		addTask(task) {
+			this.tasks = [...this.tasks, task]
+		},
+
+		// delete a task
+		deleteTask(id) {
+			this.tasks = this.tasks.filter((task) => task.id !== id)
+		},
+
+		// toggle reminder of a task
+		toggleReminder(id) {
+			this.tasks = this.tasks.map((task) =>
+				task.id === id ? { ...task, reminder: !task.reminder } : task
+			)
+		},
 	},
 	created() {
 		this.tasks = [
