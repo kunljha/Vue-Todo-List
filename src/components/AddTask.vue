@@ -92,5 +92,6 @@ export default {
 .form-control-check input {
 	flex: 2;
 	height: 20px;
+	cursor: pointer;
 }
 </style>

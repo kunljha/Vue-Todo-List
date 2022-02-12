@@ -4,6 +4,7 @@
 		:style="{
 			backgroundColor: color,
 		}"
+		@click="$emit('btn-click')"
 	>
 		{{ text }}
 	</button>
@@ -16,5 +17,6 @@ export default {
 		text: String,
 		color: String,
 	},
+	// emits: ['btn-click'],
 }
 </script>
